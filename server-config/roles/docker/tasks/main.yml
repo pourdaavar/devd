@@ -1,2 +1,5 @@
 ---
-# tasks file for docker
+- name: install docker
+  import_tasks: install_docker.yaml
+  tags: install_docker
+  when: ansible_os_family == "Debian"
