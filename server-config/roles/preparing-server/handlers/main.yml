@@ -1,2 +1,41 @@
 ---
 # handlers file for preparing-server
+- name: Restart ssh
+  ansible.builtin.systemd:
+    name: ssh
+    state: restarted
+
+- name: Restart iptables
+  ansible.builtin.systemd:
+    name: iptables
+    state: restarted
+
+- name: Restart fail2ban
+  ansible.builtin.systemd:
+    name: fail2ban
+    state: restarted
+
+- name: Restart ntp
+  ansible.builtin.systemd:
+    name: ntp
+    state: restarted
+
+# https://github.com/ansible/ansible/issues/22171
+- name: restart auditd
+  become: "yes"
+  ansible.builtin.command: service auditd restart
+  args:
+    warn: false
+
+- name: generate auditd
+  become: "yes"
+  ansible.builtin.command: augenrules
+
+- name: reload systemd
+  become: "yes"
+  ansible.builtin.systemd:
+    daemon_reload: "yes"
+
+- name: update cracklib debian
+  become: "yes"
+  ansible.builtin.command: update-cracklib
