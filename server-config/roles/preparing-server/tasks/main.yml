@@ -13,15 +13,15 @@
   tags: hardening, firewall
 
 - name: host file configure
-  import_tasks: hosts.yml
+  import_tasks: hosts.yaml
   tags: hardening
 
 - name: audit log configure
-  import_tasks: auditd.yml
+  import_tasks: auditd.yaml
   tags: hardening
 
 - name: fstab config
-  import_tasks: fstab.yml
+  import_tasks: fstab.yaml
   tags: hardening
 
 
