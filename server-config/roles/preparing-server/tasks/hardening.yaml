@@ -28,6 +28,13 @@
     src: ssh_banner
     dest: /etc/issue
 
+- name: Make sshd configuration file
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+
+  notify: Restart ssh
+
 # - name: set authorized_key took from url
 #   authorized_key:
 #     user: root
