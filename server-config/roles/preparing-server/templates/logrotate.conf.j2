@@ -1,17 +1,26 @@
 # {{ ansible_managed }}
 # CCE-80195-1
-
+# Log files are rotated every day.
 daily
 {% if ansible_distribution == 'Ubuntu' %}
 su root syslog
 {% endif %}
+# keep 7 weeks
 rotate 7
+
 create
+# dateext: use date as a suffix of the rotated file
 dateext
+
+# for compressing log files
 compress
 
+# Specifies which command to use to compress log files, The default is gzip
 compresscmd /usr/bin/xz
+
+# Specifies which command to use to uncompress log files. The default is gunzip. 
 uncompresscmd /usr/bin/unxz
 compressext .xz
 
+# rpm packages drop log roration info into this dir
 include /etc/logrotate.d
