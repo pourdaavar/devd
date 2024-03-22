@@ -1,0 +1,32 @@
+---
+- name: Lynis | Manual - create directories
+  file: 
+    dest: {{ lynis_tarball_unpackdest_dir }}
+    recurse: yes
+    state: directory
+    owner: root
+    group: root
+  tags: lynis
+
+- name: Lynis |  Manual - download latest stable version
+  get_url:
+    url: { { lynis_tarball_url } }
+    dest: { { lynis_tarball_dest } }
+    #  If force=false, the file will only be downloaded if the destination does not exist.
+    force: false
+    validate_certs: true
+    backup: true
+  tags: lynis
+
+- name: Lynis | Manual -  unpack
+  unarchive:
+    dest: {{ lynis_tarball_unpackdest }}
+    src: {{ lynis_tarball_dest }}
+    copy: false
+  tags: lynis
+
+- name: Lynis | Manual - remove tarball
+  file:
+    dest: {{ lynis_tarball_dest }}
+    state: absent
+  tags: lynis
