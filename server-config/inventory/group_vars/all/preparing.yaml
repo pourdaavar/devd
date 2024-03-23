@@ -35,7 +35,7 @@ sshd_config:
   Port: "{{ ansible_port }}"
   ListenAddress: 0.0.0.0
   PermitRootLogin: without-password
-  PasswordAuthentication: "yes"
+  PasswordAuthentication: "no"
   AllowUsers: root
   AllowGroups: root
 
@@ -47,10 +47,10 @@ iptables:
     - 80
     - 443
   #udp_port_access:
-  trusted_IP:
-    - 87.247.187.145
-  trusted_Range:
-    - 10.60.10.0/24
+  # trusted_IP:
+  #   - 87.247.187.145
+  # trusted_Range:
+  #   - 10.60.10.0/24
 
   # fail2ban configuration
 fail2ban:

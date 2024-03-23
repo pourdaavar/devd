@@ -17,13 +17,13 @@
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
-  environment: "{{ proxy_env }}"
+  # environment: "{{ proxy_env }}"
 
 - name: Add Docker Repository
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu bionic stable
     state: present
-  environment: "{{ proxy_env }}"
+  # environment: "{{ proxy_env }}"
 
 
 - name: Install Docker
@@ -35,8 +35,8 @@
   loop:
     - docker-ce
     - docker-ce-cli
-    - containered.io
-  environment: "{{ proxy_env }}"
+    - containerd.io
+  # environment: "{{ proxy_env }}"
 
 
 - name: Start and enable Docker service
